@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sottiére - Premium Coasters</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --paper: #f3eee3;
+            --paper-deep: #e8decc;
+            --ink: #21313d;
+            --ink-soft: #3a4a56;
+            --accent: #bf7436;
+            --accent-deep: #9f5b24;
+            --card: #fbf7ef;
+            --line: #d8cbb6;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Georgia, serif;
+            line-height: 1.6;
+            color: var(--ink);
+            background: radial-gradient(circle at 10% 10%, #fffaf0 0%, var(--paper) 45%) no-repeat;
+        }
+
+        header {
+            background: rgba(243, 238, 227, 0.95);
+            color: var(--ink);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(6px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-lockup {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--ink);
+        }
+
+        .hero-logo {
+            width: clamp(220px, 32vw, 380px);
+            height: auto;
+            margin: 0 auto 1.25rem;
+            display: block;
+            object-fit: contain;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--ink-soft);
+            text-decoration: none;
+            transition: color 0.25s ease;
+            font-size: 1.05rem;
+        }
+
+        nav a:hover {
+            color: var(--accent-deep);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background:
+                linear-gradient(120deg, rgba(243, 238, 227, 0.96), rgba(232, 222, 204, 0.92)),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent 0,
+                    transparent 14px,
+                    rgba(191, 116, 54, 0.05) 14px,
+                    rgba(191, 116, 54, 0.05) 16px
+                );
+            color: var(--ink);
+            padding: 120px 20px 95px;
+            text-align: center;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero h1,
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-size: clamp(3rem, 8vw, 5.2rem);
+            margin: 0 auto 1rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            line-height: 1.04;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+            max-width: 720px;
+            letter-spacing: 0.2px;
+            color: var(--ink-soft);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.1rem;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--ink-soft);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(159, 91, 36, 0.25);
+        }
+
+        .section {
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-size: clamp(2.2rem, 6vw, 3.4rem);
+            margin-bottom: 2.4rem;
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: minmax(260px, 480px);
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: var(--card);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            box-shadow: 0 12px 24px rgba(33, 49, 61, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: var(--paper-deep);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+
+        .product-info p {
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .price {
+            font-size: 1.35rem;
+            color: var(--accent-deep);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: var(--ink);
+            color: white;
+            border: none;
+            padding: 11px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--accent);
+        }
+
+        .about {
+            background: linear-gradient(180deg, var(--paper) 0%, #efe6d8 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(140deg, #f8f1e3 0%, #e8d7bc 100%);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.4rem;
+            color: var(--accent);
+        }
+
+        .about-text h3 {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-size: 2.2rem;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .contact {
+            background: var(--ink);
+            color: var(--paper);
+            text-align: center;
+        }
+
+        .contact .container {
+            max-width: 760px;
+        }
+
+        .contact-subtext {
+            margin-bottom: 2rem;
+            font-size: 1.08rem;
+            color: #d7c8b2;
+        }
+
+        .contact-form {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(232, 222, 204, 0.24);
+            border-radius: 18px;
+            padding: 1.25rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 0.85rem;
+            border: 1px solid rgba(232, 222, 204, 0.28);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.98rem;
+            background: rgba(255, 255, 255, 0.94);
+            color: var(--ink);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .contact input::placeholder,
+        .contact textarea::placeholder {
+            color: #697882;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(191, 116, 54, 0.2);
+        }
+
+        .contact textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 999px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #17242d;
+            color: #e7dac5;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero,
+        .section,
+        .contact {
+            animation: fadeUp 0.8s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-logo {
+                width: min(76vw, 300px);
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .brand-mark {
+                width: 34px;
+                height: 34px;
+            }
+
+            .product-image {
+                height: 220px;
+            }
+
+            .contact-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-form {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="header-content">
+            <a class="brand-lockup" href="#home" aria-label="Sottiere home">
+                <img class="brand-mark" src="Sottiére_jh-removebg-preview.png" alt="Sottiére logo mark">
+                <div class="logo">Sottiére</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <img class="hero-logo" src="Sottiére_jh-removebg-preview.png" alt="Sottiére emblem">
+            <h2 class="hero-tagline">Your next coaster isn't just a coaster.</h2>
+            <a href="#products" class="cta-button">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="container">
+            <h2>Our Collection</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="coaster-banner.jpg" alt="Sottiére coaster set in lifestyle setting">
+                    </div>
+                    <div class="product-info">
+                        <h3>Marble Elegance</h3>
+                        <p>Sleek white marble with gold accents. A timeless addition to any space.</p>
+                        <div class="price">$15.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2>About Sottiére</h2>
+            <div class="about-content">
+                <div class="about-image">🏺</div>
+                <div class="about-text">
+                    <h3>Craftsmanship Since 2018</h3>
+                    <p>Sottiére was founded on the belief that the smallest details matter. Our coasters aren't just functional—they're a statement of style and sophistication.</p>
+                    <p>Each piece is carefully selected from artisans and manufacturers who share our commitment to quality and sustainability. We believe in creating products that last, that feel good to use, and that enhance the beauty of your home.</p>
+                    <p>From natural stone to contemporary glass, our diverse collection ensures there's a Sottiére coaster perfect for every aesthetic.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p class="contact-subtext">Have questions? We'd love to hear from you.</p>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="contact-row">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sottiére. All rights reserved. | Premium Coasters for Refined Tastes</p>
+        <p>📧 shreyansh@shreyanshchowdhury.com | 📱 82958384</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add to cart notifications
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.parentElement.querySelector('h3').textContent;
+                alert(`${productName} added to cart!`);
+            });
+        });
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
