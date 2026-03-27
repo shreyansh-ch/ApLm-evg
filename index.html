@@ -105,15 +105,12 @@
         }
 
         .hero {
-            background:
-                linear-gradient(120deg, rgba(243, 238, 227, 0.96), rgba(232, 222, 204, 0.92)),
-                repeating-linear-gradient(
-                    -45deg,
-                    transparent 0,
-                    transparent 14px,
-                    rgba(191, 116, 54, 0.05) 14px,
-                    rgba(191, 116, 54, 0.05) 16px
-                );
+            background-image: 
+                linear-gradient(rgba(250, 243, 230, 0.55), rgba(250, 243, 230, 0.55)),
+                url('Gemini_Generated_Image_e1tvi8e1tvi8e1tv-2.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--ink);
             padding: 120px 20px 95px;
             text-align: center;
@@ -177,14 +174,28 @@
         }
 
         .products-grid {
-            display: grid;
-            grid-template-columns: minmax(260px, 480px);
-            justify-content: center;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            -webkit-overflow-scrolling: touch;
             gap: 1.2rem;
             margin-bottom: 3rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .products-intro {
+            max-width: 760px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            color: var(--ink-soft);
+            font-size: 1.05rem;
         }
 
         .product-card {
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 260px;
             background: var(--card);
             border-radius: 18px;
             overflow: hidden;
@@ -215,6 +226,9 @@
         }
 
         .product-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
             padding: 1.5rem;
         }
 
@@ -236,6 +250,7 @@
             font-size: 1.35rem;
             color: var(--accent-deep);
             font-weight: bold;
+            margin-top: auto;
             margin-bottom: 1rem;
         }
 
@@ -268,16 +283,91 @@
         }
 
         .about-image {
-            width: 100%;
-            height: 300px;
+            width: min(100%, 380px);
+            aspect-ratio: 1 / 1;
             background: linear-gradient(140deg, #f8f1e3 0%, #e8d7bc 100%);
             border: 1px solid var(--line);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
+            justify-self: center;
             font-size: 4.4rem;
             color: var(--accent);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 28%;
+            display: block;
+        }
+
+        .testimonials-section {
+            background: var(--paper);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 2rem;
+            border: 1px solid var(--line);
+            box-shadow: 0 8px 16px rgba(33, 49, 61, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(33, 49, 61, 0.12);
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-size: 1.1rem;
+            color: var(--ink);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--ink-soft);
         }
 
         .about-text h3 {
@@ -301,6 +391,10 @@
 
         .contact .container {
             max-width: 760px;
+        }
+
+        .contact h2 {
+            color: var(--paper);
         }
 
         .contact-subtext {
@@ -448,7 +542,7 @@
     <header>
         <div class="header-content">
             <a class="brand-lockup" href="#home" aria-label="Sottiere home">
-                <img class="brand-mark" src="sottiere-logo.png" alt="Sottiére logo mark">
+                <img class="brand-mark" src="Sottiére_jh-removebg-preview.png" alt="Sottiére logo mark">
                 <div class="logo">Sottiére</div>
             </a>
             <nav>
@@ -456,6 +550,7 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -465,7 +560,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <img class="hero-logo" src="sottiere-logo.png" alt="Sottiére emblem">
+            <img class="hero-logo" src="Sottiére_jh-removebg-preview.png" alt="Sottiére emblem">
             <h2 class="hero-tagline">Your next coaster isn't just a coaster.</h2>
             <a href="#products" class="cta-button">Explore Collection</a>
         </div>
@@ -475,20 +570,67 @@
     <section class="section" id="products">
         <div class="container">
             <h2>Our Collection</h2>
+            <p class="products-intro">Each design is crafted to bring gallery-level detail to everyday moments. Explore five signature styles, each with its own mood, palette, and character.</p>
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="coaster-banner.jpg" alt="Sottiére coaster set in lifestyle setting">
+                        <img src="cv-banner.png" alt="Côte Verre coaster set in cool glass-inspired tones">
                     </div>
                     <div class="product-info">
-                        <h3>Marble Elegance</h3>
-                        <p>Sleek white marble with gold accents. A timeless addition to any space.</p>
-                        <div class="price">$15.99</div>
+                        <h3>Côte Verre</h3>
+                        <p>Inspired by sea glass and modern architecture, Côte Verre pairs crisp geometry with airy blues to create a clean, coastal statement.</p>
+                        <div class="price">$9.99</div>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
 
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="av-banner.png" alt="Atelier Verdanté coaster set with muted green palette">
+                    </div>
+                    <div class="product-info">
+                        <h3>Atelier Verdanté</h3>
+                        <p>Muted greens and stone tones meet layered forms in Verdanté, a grounded composition that brings calm, botanical elegance to your table.</p>
+                        <div class="price">$9.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
 
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="az-banner.png" alt="Aurelia Zaffira coaster set with sapphire accents">
+                    </div>
+                    <div class="product-info">
+                        <h3>Aurelia Zaffira</h3>
+                        <p>Rich sapphire accents and luminous gradients define Aurelia Zaffira, designed for interiors that lean bold, polished, and contemporary.</p>
+                        <div class="price">$9.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="le-banner.png" alt="Atelier Lavande Eclat coaster set with lavender highlights">
+                    </div>
+                    <div class="product-info">
+                        <h3>Atelier Lavande Éclat</h3>
+                        <p>Soft lavender notes and delicate contrast make Lavande Éclat a subtle centerpiece that adds warmth and sophistication without overpowering.</p>
+                        <div class="price">$9.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="er-banner.png" alt="Atelier Elise Rosea coaster set in rose-inspired tones">
+                    </div>
+                    <div class="product-info">
+                        <h3>Atelier Élise Roséa</h3>
+                        <p>With layered rose hues and gentle texture, Élise Roséa delivers a romantic finish that complements both classic and modern settings.</p>
+                        <div class="price">$9.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -498,12 +640,55 @@
         <div class="container">
             <h2>About Sottiére</h2>
             <div class="about-content">
-                <div class="about-image">🏺</div>
+                <div class="about-image">
+                    <img src="shreyansh.jpg" alt="Your photo">
+                </div>
                 <div class="about-text">
-                    <h3>Craftsmanship Since 2018</h3>
-                    <p>Sottiére was founded on the belief that the smallest details matter. Our coasters aren't just functional—they're a statement of style and sophistication.</p>
+                    <h3>Craftsmanship Since 2026</h3>
+                    <p>Sottiére was founded on the belief that a product is only yours once it radiates your personality. Our coasters aren't just functional—they're a statement of elegance and individuality.</p>
                     <p>Each piece is carefully selected from artisans and manufacturers who share our commitment to quality and sustainability. We believe in creating products that last, that feel good to use, and that enhance the beauty of your home.</p>
                     <p>From natural stone to contemporary glass, our diverse collection ensures there's a Sottiére coaster perfect for every aesthetic.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section" id="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Sottiére coasters are absolutely beautiful. They've become the centerpiece of my coffee table and get compliments from every guest."</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JM</div>
+                        <div class="author-info">
+                            <h4>Jessica Martinez</h4>
+                            <p>Happy Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"The quality is outstanding. These coasters are durable, elegant, and they protect my furniture perfectly. Highly recommended!"</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CA</div>
+                        <div class="author-info">
+                            <h4>Christopher Adams</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"As an interior designer, I'm picky about home accessories. Sottiére exceeded my expectations on every level. Absolutely loving these!"</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SP</div>
+                        <div class="author-info">
+                            <h4>Sofia Petrov</h4>
+                            <p>Interior Designer</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
